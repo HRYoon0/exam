@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시험 정보 입력 (주아체 버전!)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    
+    <style>
+        /* [수정된 부분 2] body의 font-family에 'Jua' 추가 */
+        body {
+            /* 'Jua'를 맨 앞에 추가하여 구글 폰트가 가장 먼저 적용되도록 합니다. */
+            font-family: 'Jua', '양진체', '도스샘물', 'EF_Diary', 'Arial Rounded MT Bold', 'Helvetica Rounded', 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f8ff; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #5d5d5d; 
+        }
+
+        .container {
+            background-color: #ffffff; 
+            padding: 35px 40px;
+            border-radius: 30px; 
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); 
+            width: 100%;
+            max-width: 460px;
+            border: 4px dashed #ffccd5; 
+            position: relative; 
+        }
+        
+        .container::before, .container::after {
+            content: '🌟'; 
+            position: absolute;
+            font-size: 28px;
+            opacity: 0.8;
+            z-index: -1; 
+        }
+        .container::before { top: 15px; left: 15px; transform: rotate(-20deg); }
+        .container::after { bottom: 15px; right: 15px; transform: rotate(20deg); }
+
+
+        h1 {
+            color: #ff6347; 
+            font-size: 34px; /* 주아체는 크기를 조금 키우면 더 예쁩니다 */
+            font-weight: normal; /* Jua 폰트는 자체 굵기가 있어 normal로 설정해도 좋습니다 */
+            text-align: center;
+            margin-bottom: 35px;
+            text-shadow: 1px 1px 0px #fff, 2px 2px 0px rgba(255,99,71,0.3); 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #6677aa; 
+            font-size: 20px; /* 라벨도 크기를 키워줍니다 */
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 15px 20px; 
+            border: 2px solid #ffd700; 
+            border-radius: 20px; 
+            box-sizing: border-box;
+            font-size: 18px; /* 입력창 글자 크기도 키웁니다 */
+            font-family: inherit; 
+            color: #555;
+            background-color: #fffacd; 
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #ff69b4; 
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5); 
+            outline: none;
+            background-color: #fff; 
+            transform: scale(1.02); 
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="%23ff69b4"%3E%3Cpath d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/%3E%3C/svg%3E');
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 20px 20px; 
+            padding-right: 50px; 
+        }
+
+
+        button {
+            width: 100%;
+            padding: 16px 20px; 
+            background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); 
+            color: #fff;
+            border: none;
+            border-radius: 20px; 
+            cursor: pointer;
+            font-size: 22px; /* 버튼 글자 크기도 키웁니다 */
+            font-weight: normal; /* Jua 폰트 적용 */
+            font-family: inherit;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 5px 10px rgba(132, 250, 176, 0.4); 
+            margin-top: 15px; 
+        }
+
+        button:hover {
+            transform: translateY(-4px) scale(1.03); 
+            box-shadow: 0 8px 15px rgba(143, 211, 244, 0.5);
+        }
+
+        button:active {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 4px 8px rgba(132, 250, 176, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group:last-of-type {
+            margin-bottom: 30px; 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>시험 정보 입력 📝</h1> 
+        <form id="studentInfoForm">
+            <div class="form-group">
+                <label for="studentClass">🌈 우리 반은?</label> 
+                <select id="studentClass" name="studentClass" required>
+                    <option value="">-- 반짝반짝! 반을 골라줘! --</option>
+                    <option value="6-1">6-1</option>
+                    <option value="6-2">6-2</option>
+                    <option value="6-3">6-3</option>
+                    <option value="6-4">6-4</option>
+                    <option value="6-5">6-5</option>
+                    <option value="6-6">6-6</option>
+                    <option value="6-7">6-7</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="studentName">✨ 내 이름은?</label> 
+                <input type="text" id="studentName" name="studentName" placeholder="예쁜 이름을 적어줘! (홍길동)" required>
+            </div>
+            <button type="button" onclick="redirectToExam()">시험보러 출발! 🚀</button> 
+        </form>
+    </div>
+
+    <script>
+        function redirectToExam() {
+            var googleFormId = "1FAIpQLSdYmID22PoA-_LbwiTm-GlBM-fnW0S8joHQLip6fCdht6hcaQ"; 
+            var classEntryId = "entry.1917207525";     
+            var nameEntryId = "entry.1389534145";       
+
+            var studentClass = document.getElementById('studentClass').value;
+            var studentName = document.getElementById('studentName').value;
+
+            if (studentClass === "") {
+                alert("반을 꼭! 골라줘야 해요~ 🌟");
+                return;
+            }
+            if (studentName.trim() === "") {
+                alert("이름을 예쁘게 적어줄래요? ✨");
+                return;
+            }
+
+            var encodedStudentClass = encodeURIComponent(studentClass);
+            var encodedStudentName = encodeURIComponent(studentName);
+
+            var prefilledUrl = `https://docs.google.com/forms/d/e/${googleFormId}/viewform?usp=pp_url&${classEntryId}=${encodedStudentClass}&${nameEntryId}=${encodedStudentName}`;
+
+            window.location.href = prefilledUrl;
+        }
+    </script>
+</body>
+</html>
